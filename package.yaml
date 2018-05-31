@@ -18,6 +18,7 @@ dependencies:
   - amazonka-core
   - amazonka-s3
   - amazonka-sqs
+  - amazonka-sns
   - bytestring
   - freer-simple
   - lens

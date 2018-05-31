@@ -1,7 +1,7 @@
 module Spec.Effects (tests) where
 ---
 
-import Effects
+import Effects (dispatchEMailMessage, dispatchSMSMessage, EMail(..), SMS(..), notifyInteresting, notifyEmergency )
 
 import Test.Tasty (TestTree, testGroup)
 import Test.Tasty.HUnit (testCase, (@?=))
@@ -52,7 +52,7 @@ handleEmail :: Eff (EMail ': effects) a -> Eff effects (a, [Text])
 handleEmail effs = runWriter $ reinterpret impl effs
     where
         impl :: EMail b -> Eff (Writer [Text] ': effects) b
-        impl (DispatchEmailMessage msg) = tell [msg]
+        impl (DispatchEMailMessage msg) = tell [msg]
 
 handleSMS :: Eff (SMS ': effects) a -> Eff effects (a, [Text])
 handleSMS effs = runWriter $ reinterpret impl effs
