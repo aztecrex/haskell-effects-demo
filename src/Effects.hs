@@ -2,7 +2,8 @@ module Effects where
 ---
 
 import Control.Monad (void)
-import Control.Monad.Freer (send, Eff, Member, Members, LastMember, interpretM)
+import Control.Monad.Freer (send, Eff, Member, Members, LastMember, interpretM, runM)
+import Data.Function ((&))
 import Data.Text (Text)
 import qualified Network.AWS.SNS.Publish as SQS
 import qualified Network.AWS as AWS
@@ -17,6 +18,9 @@ notifyEmergency msg = do
     dispatchSMSMessage msg
     dispatchSMSMessage msg
     dispatchSMSMessage msg
+
+runNotifications :: Eff '[EMail, SMS, IO] a -> IO a
+runNotifications effs = handleEMailWithAWS effs & handleSMSWithAWS & runM
 
 data EMail a where
     DispatchEMailMessage :: Text -> EMail ()
