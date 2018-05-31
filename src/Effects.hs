@@ -1,6 +1,27 @@
 module Effects where
 ---
 
+{-
+
+This demo puts all the work, other than tests, in a single file. Typical
+software would probably not do this.
+
+The notifyXX programs are the software we are trying to deliver so they
+belong in their own module or modules. They are primary unit testing
+targets.
+
+The effect languages "EMail," and "SMS," along with their convenience functions,
+are interfaces that can be used by many programs. Each would probably be in
+its own module in a typical program
+
+The effect handlers and low-level SNS code are specific implementation in
+AWS. They belong in their own module.
+
+The environment "runners" are application configuration. They might belong
+in a wiring module alongside the configuration for the rest of the application.
+
+-}
+
 import Control.Monad (void)
 import Control.Monad.Freer (send, Eff, Member, Members, LastMember, interpretM, runM)
 import Data.Function ((&))
