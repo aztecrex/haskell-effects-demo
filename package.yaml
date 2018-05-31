@@ -1,0 +1,83 @@
+name:                haskell-effects-demo
+version:             0.1.0.0
+github:              "aztecrex/haskell-effects-demo"
+license:             BSD3
+author:              "Greg Wiley"
+maintainer:          "aztex.rex@jammm.com"
+copyright:           "2018 Greg Wiley"
+
+extra-source-files:
+- README.md
+
+description:         See GitHub <https://github.com/aztecrex/haskell-effects-demo#readme>
+
+dependencies:
+  - base
+  - aeson
+  - amazonka
+  - amazonka-core
+  - amazonka-s3
+  - amazonka-sqs
+  - bytestring
+  - freer-simple
+  - lens
+  - lens-aeson
+  - text
+  - transformers
+  - uuid
+  - vector
+  - wreq
+
+library:
+  source-dirs: src
+
+executables:
+  haskell-effects-demo-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haskell-effects-demo
+
+tests:
+  haskell-effects-demo-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haskell-effects-demo
+    - tasty
+    - tasty-hunit
+
+default-extensions:
+  - ConstraintKinds
+  - DataKinds
+  - DefaultSignatures
+  - DeriveFunctor
+  - DeriveGeneric
+  - ExistentialQuantification
+  - FlexibleContexts
+  - FlexibleInstances
+  - FunctionalDependencies
+  - GADTs
+  - MonoLocalBinds
+  - GeneralizedNewtypeDeriving
+  - KindSignatures
+  - LambdaCase
+  - MultiParamTypeClasses
+  - NamedFieldPuns
+  - OverloadedStrings
+  - RankNTypes
+  - ScopedTypeVariables
+  - StandaloneDeriving
+  - TupleSections
+  - TypeApplications
+  - TypeOperators
+  - TypeFamilies
+
